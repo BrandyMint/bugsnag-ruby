@@ -22,6 +22,8 @@ module Bugsnag
     attr_accessor :middleware
     attr_accessor :internal_middleware
     attr_accessor :delay_with_resque
+    attr_accessor :delay_with_sidekiq
+    attr_accessor :delay_with_sidekiq_options
     attr_accessor :debug
     attr_accessor :proxy_host
     attr_accessor :proxy_port
@@ -73,6 +75,7 @@ module Bugsnag
       self.endpoint = DEFAULT_ENDPOINT
       self.hostname = default_hostname
       self.delivery_method = DEFAULT_DELIVERY_METHOD
+      self.delay_with_sidekiq_options = {}
 
       # Read the API key from the environment
       self.api_key = ENV["BUGSNAG_API_KEY"]

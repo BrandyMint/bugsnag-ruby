@@ -42,6 +42,9 @@ module Bugsnag
       # Use resque for asynchronous notification if required
       require "bugsnag/delay/resque" if configuration.delay_with_resque && defined?(Resque)
 
+      # Use sidekiq for asynchronous notification if required
+      require "bugsnag/delay/sidekiq" if configuration.delay_with_sidekiq && defined?(Sidekiq)
+
       # Log that we are ready to rock
       if configuration.api_key && !@logged_ready
         log "Bugsnag exception handler #{VERSION} ready, api_key=#{configuration.api_key}"
